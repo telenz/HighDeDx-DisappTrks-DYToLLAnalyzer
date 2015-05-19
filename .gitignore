@@ -1,0 +1,6 @@
+**/*.pyc
+**/*~
+**/*.so
+**/*.d
+analyzer
+filelist_*.txt
