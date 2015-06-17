@@ -286,6 +286,9 @@ class Event
 
   bool tightMuonCut;
   bool tightElectronCut;
+  bool TagAndProbeElectronCut;
+  bool TagAndProbeMuonCut;
+  bool TagAndProbeTauCut;
 
   bool TrackPtRequirement;
   bool NumOfLostOuterRequirement;
