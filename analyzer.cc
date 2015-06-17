@@ -178,6 +178,21 @@ int main(int argc, char** argv)
   chiTrackspreselectionTightElectrons.tightElectronCut     = true;
   chiTrackspreselectionTightElectrons.trackPreselection    = true;
 
+  class Event chiTrackspreselectionTagAndProbeElectron("chiTrackspreselectionTagAndProbeElectron",ofile);
+  if(isSignal) chiTrackspreselectionTagAndProbeElectron.onlyChi    = true;
+  chiTrackspreselectionTagAndProbeElectron.TagAndProbeElectronCut  = true;
+  chiTrackspreselectionTagAndProbeElectron.trackPreselection       = true;
+
+  class Event chiTrackspreselectionTagAndProbeMuon("chiTrackspreselectionTagAndProbeMuon",ofile);
+  if(isSignal) chiTrackspreselectionTagAndProbeMuon.onlyChi    = true;
+  chiTrackspreselectionTagAndProbeMuon.TagAndProbeMuonCut      = true;
+  chiTrackspreselectionTagAndProbeMuon.trackPreselection       = true;
+
+  class Event chiTrackspreselectionTagAndProbeTau("chiTrackspreselectionTagAndProbeTau",ofile);
+  if(isSignal) chiTrackspreselectionTagAndProbeTau.onlyChi    = true;
+  chiTrackspreselectionTagAndProbeTau.TagAndProbeTauCut       = true;
+  chiTrackspreselectionTagAndProbeTau.trackPreselection       = true;
+
   class Event chiTrackstriggerRequirements("chiTrackstriggerRequirements",ofile);
   if(isSignal) chiTrackstriggerRequirements.onlyChi = true;
   chiTrackstriggerRequirements.triggerRequirements  = true;
@@ -188,83 +203,6 @@ int main(int argc, char** argv)
   chiTrackspreselection.trackPreselection   = true;
   chiTrackspreselection.qcdSupression       = true;
 
-  class Event chiTrackspreselectionPlusNLostGt1("chiTrackspreselectionPlusNLostGt1",ofile);
-  if(isSignal) chiTrackspreselectionPlusNLostGt1.onlyChi      = true;
-  chiTrackspreselectionPlusNLostGt1.triggerRequirements       = true;
-  chiTrackspreselectionPlusNLostGt1.trackPreselection         = true;
-  chiTrackspreselectionPlusNLostGt1.qcdSupression             = true;
-  chiTrackspreselectionPlusNLostGt1.trackCandidateCutFinal    = true;
-  chiTrackspreselectionPlusNLostGt1.TrackPtRequirement        = false;
-  chiTrackspreselectionPlusNLostGt1.NumOfLostOuterRequirement = true;
-  chiTrackspreselectionPlusNLostGt1.CaloIsolationRequirement  = false;
-  chiTrackspreselectionPlusNLostGt1.DeDxRequirement           = false;
-
-  class Event chiTrackspreselection1LostPlusIsoCut("chiTrackspreselection1LostPlusIsoCut",ofile);
-  if(isSignal) chiTrackspreselection1LostPlusIsoCut.onlyChi      = true;
-  chiTrackspreselection1LostPlusIsoCut.triggerRequirements       = true;
-  chiTrackspreselection1LostPlusIsoCut.trackPreselection         = true;
-  chiTrackspreselection1LostPlusIsoCut.qcdSupression             = true;
-  chiTrackspreselection1LostPlusIsoCut.trackCandidateCutFinal    = true;
-  chiTrackspreselection1LostPlusIsoCut.TrackPtRequirement        = false;
-  chiTrackspreselection1LostPlusIsoCut.NumOfLostOuterRequirement = true;
-  chiTrackspreselection1LostPlusIsoCut.CaloIsolationRequirement  = true;
-  chiTrackspreselection1LostPlusIsoCut.DeDxRequirement           = false;
-
-  class Event chiTrackspreselection1LostPlusPtCut("chiTrackspreselection1LostPlusPtCut",ofile);
-  if(isSignal) chiTrackspreselection1LostPlusPtCut.onlyChi      = true;
-  chiTrackspreselection1LostPlusPtCut.triggerRequirements       = true;
-  chiTrackspreselection1LostPlusPtCut.trackPreselection         = true;
-  chiTrackspreselection1LostPlusPtCut.qcdSupression             = true;
-  chiTrackspreselection1LostPlusPtCut.trackCandidateCutFinal    = true;
-  chiTrackspreselection1LostPlusPtCut.TrackPtRequirement        = true;
-  chiTrackspreselection1LostPlusPtCut.NumOfLostOuterRequirement = true;
-  chiTrackspreselection1LostPlusPtCut.CaloIsolationRequirement  = false;
-  chiTrackspreselection1LostPlusPtCut.DeDxRequirement           = false;
-
-  class Event chiTrackspreselection1LostPlusIsoAndPtCut("chiTrackspreselection1LostPlusIsoAndPtCut",ofile);
-  if(isSignal) chiTrackspreselection1LostPlusIsoAndPtCut.onlyChi      = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.triggerRequirements       = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.trackPreselection         = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.qcdSupression             = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.trackCandidateCutFinal    = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.TrackPtRequirement        = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.NumOfLostOuterRequirement = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.CaloIsolationRequirement  = true;
-  chiTrackspreselection1LostPlusIsoAndPtCut.DeDxRequirement           = false;
-
-  class Event chiTrackspreselection1LostPlusIsoAndDeDxCut("chiTrackspreselection1LostPlusIsoAndDeDxCut",ofile);
-  if(isSignal) chiTrackspreselection1LostPlusIsoAndDeDxCut.onlyChi      = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.triggerRequirements       = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.trackPreselection         = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.qcdSupression             = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.trackCandidateCutFinal    = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.TrackPtRequirement        = false;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.NumOfLostOuterRequirement = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.CaloIsolationRequirement  = true;
-  chiTrackspreselection1LostPlusIsoAndDeDxCut.DeDxRequirement           = true;
-
-  class Event chiTrackspreselection1LostPlusPtAndDeDxCut("chiTrackspreselection1LostPlusPtAndDeDxCut",ofile);
-  if(isSignal) chiTrackspreselection1LostPlusPtAndDeDxCut.onlyChi      = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.triggerRequirements       = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.trackPreselection         = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.qcdSupression             = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.trackCandidateCutFinal    = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.TrackPtRequirement        = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.NumOfLostOuterRequirement = true;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.CaloIsolationRequirement  = false;
-  chiTrackspreselection1LostPlusPtAndDeDxCut.DeDxRequirement           = true;
-
-  class Event chiTracksfullSelection("chiTracksfullSelection",ofile);
-  if(isSignal) chiTracksfullSelection.onlyChi   = true;
-  chiTracksfullSelection.triggerRequirements    = true;
-  chiTracksfullSelection.trackPreselection      = true;
-  chiTracksfullSelection.qcdSupression          = true;
-  chiTracksfullSelection.trackCandidateCutFinal = true;
-  chiTracksfullSelection.TrackPtRequirement        = true;
-  chiTracksfullSelection.NumOfLostOuterRequirement = true;
-  chiTracksfullSelection.CaloIsolationRequirement  = true;
-  chiTracksfullSelection.DeDxRequirement           = true;
-  
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // SM model control regions
   class Event chiTracksSMControlCalo("chiTracksSMControlCalo",ofile);
@@ -280,145 +218,6 @@ int main(int argc, char** argv)
   chiTracksSMControlCalo.invertCaloIsolationRequirement = true;
   
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and DeDx
-  /*
-  ABCD trackPt_DeDx("_trackPt_DeDx",ofile,isSignal);
- 
-  trackPt_DeDx.CR1.TrackPtRequirement = true;
-  trackPt_DeDx.CR1.DeDxRequirement    = true;
-  trackPt_DeDx.CR1.invertTrackPtRequirement = false;
-  trackPt_DeDx.CR1.invertDeDxRequirement    = true;
-
-  trackPt_DeDx.CR2.TrackPtRequirement = true;
-  trackPt_DeDx.CR2.DeDxRequirement    = true;
-  trackPt_DeDx.CR2.invertTrackPtRequirement = true;
-  trackPt_DeDx.CR2.invertDeDxRequirement    = true;
-
-  trackPt_DeDx.CR3.TrackPtRequirement = true;
-  trackPt_DeDx.CR3.DeDxRequirement    = true;
-  trackPt_DeDx.CR3.invertTrackPtRequirement = true;
-  trackPt_DeDx.CR3.invertDeDxRequirement    = false;
-
-  trackPt_DeDx.SR.TrackPtRequirement = true;
-  trackPt_DeDx.SR.DeDxRequirement    = true;
-  trackPt_DeDx.SR.invertTrackPtRequirement = false;
-  trackPt_DeDx.SR.invertDeDxRequirement    = false;
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and CaloIsolation
-  ABCD trackPt_CaloIso("_trackPt_CaloIso",ofile,isSignal);
- 
-  trackPt_CaloIso.CR1.TrackPtRequirement       = true;
-  trackPt_CaloIso.CR1.CaloIsolationRequirement = true;
-  trackPt_CaloIso.CR1.invertTrackPtRequirement       = false;
-  trackPt_CaloIso.CR1.invertCaloIsolationRequirement = true;
-
-  trackPt_CaloIso.CR2.TrackPtRequirement       = true;
-  trackPt_CaloIso.CR2.CaloIsolationRequirement = true;
-  trackPt_CaloIso.CR2.invertTrackPtRequirement       = true;
-  trackPt_CaloIso.CR2.invertCaloIsolationRequirement = true;
-
-  trackPt_CaloIso.CR3.TrackPtRequirement       = true;
-  trackPt_CaloIso.CR3.CaloIsolationRequirement = true;
-  trackPt_CaloIso.CR3.invertTrackPtRequirement       = true;
-  trackPt_CaloIso.CR3.invertCaloIsolationRequirement = false;
-
-  trackPt_CaloIso.SR.TrackPtRequirement       = true;
-  trackPt_CaloIso.SR.CaloIsolationRequirement = true;
-  trackPt_CaloIso.SR.invertTrackPtRequirement       = false;
-  trackPt_CaloIso.SR.invertCaloIsolationRequirement = false;
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and DeDx
-  ABCD DeDx_CaloIso("_DeDx_CaloIso",ofile,isSignal);
- 
-  DeDx_CaloIso.CR1.DeDxRequirement          = true;
-  DeDx_CaloIso.CR1.CaloIsolationRequirement = true;
-  DeDx_CaloIso.CR1.invertDeDxRequirement          = false;
-  DeDx_CaloIso.CR1.invertCaloIsolationRequirement = true;
-
-  DeDx_CaloIso.CR2.DeDxRequirement          = true;
-  DeDx_CaloIso.CR2.CaloIsolationRequirement = true;
-  DeDx_CaloIso.CR2.invertDeDxRequirement          = true;
-  DeDx_CaloIso.CR2.invertCaloIsolationRequirement = true;
-
-  DeDx_CaloIso.CR3.DeDxRequirement          = true;
-  DeDx_CaloIso.CR3.CaloIsolationRequirement = true;
-  DeDx_CaloIso.CR3.invertDeDxRequirement          = true;
-  DeDx_CaloIso.CR3.invertCaloIsolationRequirement = false;
-
-  DeDx_CaloIso.SR.DeDxRequirement          = true;
-  DeDx_CaloIso.SR.CaloIsolationRequirement = true;
-  DeDx_CaloIso.SR.invertDeDxRequirement          = false;
-  DeDx_CaloIso.SR.invertCaloIsolationRequirement = false;
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and DeDx
-  ABCD trackPt_lostOuterHits("_trackPt_lostOuterHits",ofile,isSignal);
- 
-  trackPt_lostOuterHits.CR1.TrackPtRequirement        = true;
-  trackPt_lostOuterHits.CR1.NumOfLostOuterRequirement = true;
-  trackPt_lostOuterHits.CR1.invertTrackPtRequirement        = false;
-  trackPt_lostOuterHits.CR1.invertNumOfLostOuterRequirement = true;
-
-  trackPt_lostOuterHits.CR2.TrackPtRequirement        = true;
-  trackPt_lostOuterHits.CR2.NumOfLostOuterRequirement = true;
-  trackPt_lostOuterHits.CR2.invertTrackPtRequirement        = true;
-  trackPt_lostOuterHits.CR2.invertNumOfLostOuterRequirement = true;
-
-  trackPt_lostOuterHits.CR3.TrackPtRequirement        = true;
-  trackPt_lostOuterHits.CR3.NumOfLostOuterRequirement = true;
-  trackPt_lostOuterHits.CR3.invertTrackPtRequirement        = true;
-  trackPt_lostOuterHits.CR3.invertNumOfLostOuterRequirement = false;
-
-  trackPt_lostOuterHits.SR.TrackPtRequirement        = true;
-  trackPt_lostOuterHits.SR.NumOfLostOuterRequirement = true;
-  trackPt_lostOuterHits.SR.invertTrackPtRequirement        = false;
-  trackPt_lostOuterHits.SR.invertNumOfLostOuterRequirement = false;
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and DeDx
-  ABCD DeDx_lostOuterHits("_DeDx_lostOuterHits",ofile,isSignal);
- 
-  DeDx_lostOuterHits.CR1.DeDxRequirement           = true;
-  DeDx_lostOuterHits.CR1.NumOfLostOuterRequirement = true;
-  DeDx_lostOuterHits.CR1.invertDeDxRequirement           = false;
-  DeDx_lostOuterHits.CR1.invertNumOfLostOuterRequirement = true;
-
-  DeDx_lostOuterHits.CR2.DeDxRequirement           = true;
-  DeDx_lostOuterHits.CR2.NumOfLostOuterRequirement = true;
-  DeDx_lostOuterHits.CR2.invertDeDxRequirement           = true;
-  DeDx_lostOuterHits.CR2.invertNumOfLostOuterRequirement = true;
-
-  DeDx_lostOuterHits.CR3.DeDxRequirement           = true;
-  DeDx_lostOuterHits.CR3.NumOfLostOuterRequirement = true;
-  DeDx_lostOuterHits.CR3.invertDeDxRequirement           = true;
-  DeDx_lostOuterHits.CR3.invertNumOfLostOuterRequirement = false;
-
-  DeDx_lostOuterHits.SR.DeDxRequirement           = true;
-  DeDx_lostOuterHits.SR.NumOfLostOuterRequirement = true;
-  DeDx_lostOuterHits.SR.invertDeDxRequirement           = false;
-  DeDx_lostOuterHits.SR.invertNumOfLostOuterRequirement = false;
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  // ABCD method with track Pt and DeDx
-  ABCD CaloIso_lostOuterHits("_CaloIso_lostOuterHits",ofile,isSignal);
- 
-  CaloIso_lostOuterHits.CR1.CaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.CR1.NumOfLostOuterRequirement = true;
-  CaloIso_lostOuterHits.CR1.invertCaloIsolationRequirement  = false;
-  CaloIso_lostOuterHits.CR1.invertNumOfLostOuterRequirement = true;
-
-  CaloIso_lostOuterHits.CR2.CaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.CR2.NumOfLostOuterRequirement = true;
-  CaloIso_lostOuterHits.CR2.invertCaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.CR2.invertNumOfLostOuterRequirement = true;
-
-  CaloIso_lostOuterHits.CR3.CaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.CR3.NumOfLostOuterRequirement = true;
-  CaloIso_lostOuterHits.CR3.invertCaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.CR3.invertNumOfLostOuterRequirement = false;
-
-  CaloIso_lostOuterHits.SR.CaloIsolationRequirement  = true;
-  CaloIso_lostOuterHits.SR.NumOfLostOuterRequirement = true;
-  CaloIso_lostOuterHits.SR.invertCaloIsolationRequirement  = false;
-  CaloIso_lostOuterHits.SR.invertNumOfLostOuterRequirement = false;
-  */
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   //-------------------------------------------------------------------------------------
@@ -610,52 +409,14 @@ int main(int argc, char** argv)
       //fullSelection.Selection();
       
       //chiTracksnoSelection.Selection();
-      chiTracksnoSelectionTightMuons.Selection();
-      chiTracksnoSelectionTightElectrons.Selection();
+      //chiTracksnoSelectionTightMuons.Selection();
+      //chiTracksnoSelectionTightElectrons.Selection();
       chiTrackspreselectionTightMuons.Selection();
       chiTrackspreselectionTightElectrons.Selection();
+      chiTrackspreselectionTagAndProbeElectron.Selection();
+      chiTrackspreselectionTagAndProbeMuon.Selection();
+      chiTrackspreselectionTagAndProbeTau.Selection();
       
-      /*
-      chiTrackstriggerRequirements.Selection();
-      chiTrackspreselection.Selection();
-      chiTracksfullSelection.Selection();
-      chiTracksSMControlCalo.Selection();
-
-      chiTrackspreselectionPlusNLostGt1.Selection();
-      chiTrackspreselection1LostPlusIsoCut.Selection();
-      chiTrackspreselection1LostPlusPtCut.Selection();
-      chiTrackspreselection1LostPlusIsoAndPtCut.Selection();
-      chiTrackspreselection1LostPlusIsoAndDeDxCut.Selection();
-      chiTrackspreselection1LostPlusPtAndDeDxCut.Selection();
-      */
-      /*
-      if(!isData){
-	trackPt_DeDx.CR1.Selection();
-	trackPt_DeDx.CR2.Selection();
-	trackPt_DeDx.CR3.Selection();
-	trackPt_DeDx.SR.Selection();
-	trackPt_CaloIso.CR1.Selection();
-	trackPt_CaloIso.CR2.Selection();
-	trackPt_CaloIso.CR3.Selection();
-	trackPt_CaloIso.SR.Selection();
-	DeDx_CaloIso.CR1.Selection();
-	DeDx_CaloIso.CR2.Selection();
-	DeDx_CaloIso.CR3.Selection();
-	DeDx_CaloIso.SR.Selection();
-	trackPt_lostOuterHits.CR1.Selection();
-	trackPt_lostOuterHits.CR2.Selection();
-	trackPt_lostOuterHits.CR3.Selection();
-	trackPt_lostOuterHits.SR.Selection();
-	DeDx_lostOuterHits.CR1.Selection();
-	DeDx_lostOuterHits.CR2.Selection();
-	DeDx_lostOuterHits.CR3.Selection();
-	DeDx_lostOuterHits.SR.Selection();
-	CaloIso_lostOuterHits.CR1.Selection();
-	CaloIso_lostOuterHits.CR2.Selection();
-	CaloIso_lostOuterHits.CR3.Selection();
-	CaloIso_lostOuterHits.SR.Selection();
-      }
-      */
       
     }//end of loop over events
  
