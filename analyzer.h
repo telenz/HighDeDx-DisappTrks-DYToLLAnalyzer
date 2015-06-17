@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // File:        analyzer.h
 // Description: Analyzer header for ntuples created by TheNtupleMaker
-// Created:     Fri Apr 17 15:19:05 2015 by mkanalyzer.py
+// Created:     Fri Jun 12 11:39:02 2015 by mkanalyzer.py
 // Author:      Teresa Lenz
 //-----------------------------------------------------------------------------
 // -- System
@@ -109,6 +109,7 @@ std::vector<float>	MuonPFlow_globalTrack_chi2(200,0);
 std::vector<float>	MuonPFlow_globalTrack_d0(200,0);
 std::vector<int>	MuonPFlow_globalTrack_hitPattern_numberOfValidMuonHits(200,0);
 std::vector<float>	MuonPFlow_globalTrack_ndof(200,0);
+std::vector<float>	MuonPFlow_innerTrack_dz(200,0);
 std::vector<int>	MuonPFlow_innerTrack_hitPattern_numberOfValidPixelHits(200,0);
 std::vector<int>	MuonPFlow_innerTrack_hitPattern_trackerLayersWithMeasurement(200,0);
 std::vector<int>	MuonPFlow_isGlobalMuon(200,0);
@@ -133,6 +134,7 @@ std::vector<float>	Muon_globalTrack_chi2(200,0);
 std::vector<float>	Muon_globalTrack_d0(200,0);
 std::vector<int>	Muon_globalTrack_hitPattern_numberOfValidMuonHits(200,0);
 std::vector<float>	Muon_globalTrack_ndof(200,0);
+std::vector<float>	Muon_innerTrack_dz(200,0);
 std::vector<int>	Muon_innerTrack_hitPattern_numberOfValidPixelHits(200,0);
 std::vector<int>	Muon_innerTrack_hitPattern_trackerLayersWithMeasurement(200,0);
 std::vector<int>	Muon_isGlobalMuon(200,0);
@@ -167,6 +169,7 @@ std::vector<float>	Track_caloEMDeltaRp5(2000,0);
 std::vector<float>	Track_caloHadDeltaRp3(2000,0);
 std::vector<float>	Track_caloHadDeltaRp4(2000,0);
 std::vector<float>	Track_caloHadDeltaRp5(2000,0);
+std::vector<float>	Track_charge(2000,0);
 std::vector<float>	Track_chi2(2000,0);
 std::vector<float>	Track_eta(2000,0);
 std::vector<unsigned short>	Track_hitPattern_trackerLayersWithoutMeasurement(2000,0);
@@ -632,6 +635,7 @@ struct Muon_s
   float	globalTrack_d0;
   float	dB;
   float	vertex_z;
+  float	innerTrack_dz;
   int	globalTrack_hitPattern_numberOfValidMuonHits;
   int	innerTrack_hitPattern_trackerLayersWithMeasurement;
   int	innerTrack_hitPattern_numberOfValidPixelHits;
@@ -666,6 +670,7 @@ std::ostream& operator<<(std::ostream& os, const Muon_s& o)
   sprintf(r, "  %-32s: %f\n", "globalTrack_d0", (double)o.globalTrack_d0); os << r;
   sprintf(r, "  %-32s: %f\n", "dB", (double)o.dB); os << r;
   sprintf(r, "  %-32s: %f\n", "vertex_z", (double)o.vertex_z); os << r;
+  sprintf(r, "  %-32s: %f\n", "innerTrack_dz", (double)o.innerTrack_dz); os << r;
   sprintf(r, "  %-32s: %f\n", "globalTrack_hitPattern_numberOfValidMuonHits", (double)o.globalTrack_hitPattern_numberOfValidMuonHits); os << r;
   sprintf(r, "  %-32s: %f\n", "innerTrack_hitPattern_trackerLayersWithMeasurement", (double)o.innerTrack_hitPattern_trackerLayersWithMeasurement); os << r;
   sprintf(r, "  %-32s: %f\n", "innerTrack_hitPattern_numberOfValidPixelHits", (double)o.innerTrack_hitPattern_numberOfValidPixelHits); os << r;
@@ -695,6 +700,7 @@ struct MuonPFlow_s
   float	globalTrack_d0;
   float	dB;
   float	vertex_z;
+  float	innerTrack_dz;
   int	globalTrack_hitPattern_numberOfValidMuonHits;
   int	innerTrack_hitPattern_trackerLayersWithMeasurement;
   int	innerTrack_hitPattern_numberOfValidPixelHits;
@@ -729,6 +735,7 @@ std::ostream& operator<<(std::ostream& os, const MuonPFlow_s& o)
   sprintf(r, "  %-32s: %f\n", "globalTrack_d0", (double)o.globalTrack_d0); os << r;
   sprintf(r, "  %-32s: %f\n", "dB", (double)o.dB); os << r;
   sprintf(r, "  %-32s: %f\n", "vertex_z", (double)o.vertex_z); os << r;
+  sprintf(r, "  %-32s: %f\n", "innerTrack_dz", (double)o.innerTrack_dz); os << r;
   sprintf(r, "  %-32s: %f\n", "globalTrack_hitPattern_numberOfValidMuonHits", (double)o.globalTrack_hitPattern_numberOfValidMuonHits); os << r;
   sprintf(r, "  %-32s: %f\n", "innerTrack_hitPattern_trackerLayersWithMeasurement", (double)o.innerTrack_hitPattern_trackerLayersWithMeasurement); os << r;
   sprintf(r, "  %-32s: %f\n", "innerTrack_hitPattern_numberOfValidPixelHits", (double)o.innerTrack_hitPattern_numberOfValidPixelHits); os << r;
@@ -806,6 +813,7 @@ struct Track_s
   float	vz;
   float	chi2;
   float	ndof;
+  float	charge;
   unsigned short	numberOfValidHits;
   unsigned short	hitPattern_trackerLayersWithoutMeasurement;
   unsigned short	trackerExpectedHitsInner_numberOfLostHits;
@@ -824,6 +832,7 @@ struct Track_s
   double genE;
   double genEt;
   double beta;
+
 };
 std::vector<Track_s> Track(2000);
 
@@ -843,6 +852,7 @@ std::ostream& operator<<(std::ostream& os, const Track_s& o)
   sprintf(r, "  %-32s: %f\n", "vz", (double)o.vz); os << r;
   sprintf(r, "  %-32s: %f\n", "chi2", (double)o.chi2); os << r;
   sprintf(r, "  %-32s: %f\n", "ndof", (double)o.ndof); os << r;
+  sprintf(r, "  %-32s: %f\n", "charge", (double)o.charge); os << r;
   sprintf(r, "  %-32s: %f\n", "numberOfValidHits", (double)o.numberOfValidHits); os << r;
   sprintf(r, "  %-32s: %f\n", "hitPattern_trackerLayersWithoutMeasurement", (double)o.hitPattern_trackerLayersWithoutMeasurement); os << r;
   sprintf(r, "  %-32s: %f\n", "trackerExpectedHitsInner_numberOfLostHits", (double)o.trackerExpectedHitsInner_numberOfLostHits); os << r;
@@ -989,6 +999,7 @@ inline void fillMuon()
       Muon[i].globalTrack_d0	= Muon_globalTrack_d0[i];
       Muon[i].dB	= Muon_dB[i];
       Muon[i].vertex_z	= Muon_vertex_z[i];
+      Muon[i].innerTrack_dz	= Muon_innerTrack_dz[i];
       Muon[i].globalTrack_hitPattern_numberOfValidMuonHits	= Muon_globalTrack_hitPattern_numberOfValidMuonHits[i];
       Muon[i].innerTrack_hitPattern_trackerLayersWithMeasurement	= Muon_innerTrack_hitPattern_trackerLayersWithMeasurement[i];
       Muon[i].innerTrack_hitPattern_numberOfValidPixelHits	= Muon_innerTrack_hitPattern_numberOfValidPixelHits[i];
@@ -1021,6 +1032,7 @@ inline void fillMuonPFlow()
       MuonPFlow[i].globalTrack_d0	= MuonPFlow_globalTrack_d0[i];
       MuonPFlow[i].dB	= MuonPFlow_dB[i];
       MuonPFlow[i].vertex_z	= MuonPFlow_vertex_z[i];
+      MuonPFlow[i].innerTrack_dz	= MuonPFlow_innerTrack_dz[i];
       MuonPFlow[i].globalTrack_hitPattern_numberOfValidMuonHits	= MuonPFlow_globalTrack_hitPattern_numberOfValidMuonHits[i];
       MuonPFlow[i].innerTrack_hitPattern_trackerLayersWithMeasurement	= MuonPFlow_innerTrack_hitPattern_trackerLayersWithMeasurement[i];
       MuonPFlow[i].innerTrack_hitPattern_numberOfValidPixelHits	= MuonPFlow_innerTrack_hitPattern_numberOfValidPixelHits[i];
@@ -1079,6 +1091,7 @@ inline void fillTrack()
       Track[i].vz	= Track_vz[i];
       Track[i].chi2	= Track_chi2[i];
       Track[i].ndof	= Track_ndof[i];
+      Track[i].charge	= Track_charge[i];
       Track[i].numberOfValidHits	= Track_numberOfValidHits[i];
       Track[i].hitPattern_trackerLayersWithoutMeasurement	= Track_hitPattern_trackerLayersWithoutMeasurement[i];
       Track[i].trackerExpectedHitsInner_numberOfLostHits	= Track_trackerExpectedHitsInner_numberOfLostHits[i];
@@ -1283,6 +1296,7 @@ void saveSelectedObjects()
           Muon_globalTrack_d0[i]	= Muon_globalTrack_d0[j];
           Muon_dB[i]	= Muon_dB[j];
           Muon_vertex_z[i]	= Muon_vertex_z[j];
+          Muon_innerTrack_dz[i]	= Muon_innerTrack_dz[j];
           Muon_globalTrack_hitPattern_numberOfValidMuonHits[i]	= Muon_globalTrack_hitPattern_numberOfValidMuonHits[j];
           Muon_innerTrack_hitPattern_trackerLayersWithMeasurement[i]	= Muon_innerTrack_hitPattern_trackerLayersWithMeasurement[j];
           Muon_innerTrack_hitPattern_numberOfValidPixelHits[i]	= Muon_innerTrack_hitPattern_numberOfValidPixelHits[j];
@@ -1324,6 +1338,7 @@ void saveSelectedObjects()
           MuonPFlow_globalTrack_d0[i]	= MuonPFlow_globalTrack_d0[j];
           MuonPFlow_dB[i]	= MuonPFlow_dB[j];
           MuonPFlow_vertex_z[i]	= MuonPFlow_vertex_z[j];
+          MuonPFlow_innerTrack_dz[i]	= MuonPFlow_innerTrack_dz[j];
           MuonPFlow_globalTrack_hitPattern_numberOfValidMuonHits[i]	= MuonPFlow_globalTrack_hitPattern_numberOfValidMuonHits[j];
           MuonPFlow_innerTrack_hitPattern_trackerLayersWithMeasurement[i]	= MuonPFlow_innerTrack_hitPattern_trackerLayersWithMeasurement[j];
           MuonPFlow_innerTrack_hitPattern_numberOfValidPixelHits[i]	= MuonPFlow_innerTrack_hitPattern_numberOfValidPixelHits[j];
@@ -1409,6 +1424,7 @@ void saveSelectedObjects()
           Track_vz[i]	= Track_vz[j];
           Track_chi2[i]	= Track_chi2[j];
           Track_ndof[i]	= Track_ndof[j];
+          Track_charge[i]	= Track_charge[j];
           Track_numberOfValidHits[i]	= Track_numberOfValidHits[j];
           Track_hitPattern_trackerLayersWithoutMeasurement[i]	= Track_hitPattern_trackerLayersWithoutMeasurement[j];
           Track_trackerExpectedHitsInner_numberOfLostHits[i]	= Track_trackerExpectedHitsInner_numberOfLostHits[j];
@@ -1524,6 +1540,7 @@ void selectVariables(itreestream& stream)
   stream.select("patMuon_selectedPatMuonsLoosePFlow.globalTrack_d0", MuonPFlow_globalTrack_d0);
   stream.select("patMuon_selectedPatMuonsLoosePFlow.globalTrack_hitPattern_numberOfValidMuonHits", MuonPFlow_globalTrack_hitPattern_numberOfValidMuonHits);
   stream.select("patMuon_selectedPatMuonsLoosePFlow.globalTrack_ndof", MuonPFlow_globalTrack_ndof);
+  stream.select("patMuon_selectedPatMuonsLoosePFlow.innerTrack_dz", MuonPFlow_innerTrack_dz);
   stream.select("patMuon_selectedPatMuonsLoosePFlow.innerTrack_hitPattern_numberOfValidPixelHits", MuonPFlow_innerTrack_hitPattern_numberOfValidPixelHits);
   stream.select("patMuon_selectedPatMuonsLoosePFlow.innerTrack_hitPattern_trackerLayersWithMeasurement", MuonPFlow_innerTrack_hitPattern_trackerLayersWithMeasurement);
   stream.select("patMuon_selectedPatMuonsLoosePFlow.isGlobalMuon", MuonPFlow_isGlobalMuon);
@@ -1548,6 +1565,7 @@ void selectVariables(itreestream& stream)
   stream.select("patMuon_selectedPatMuonsLoose.globalTrack_d0", Muon_globalTrack_d0);
   stream.select("patMuon_selectedPatMuonsLoose.globalTrack_hitPattern_numberOfValidMuonHits", Muon_globalTrack_hitPattern_numberOfValidMuonHits);
   stream.select("patMuon_selectedPatMuonsLoose.globalTrack_ndof", Muon_globalTrack_ndof);
+  stream.select("patMuon_selectedPatMuonsLoose.innerTrack_dz", Muon_innerTrack_dz);
   stream.select("patMuon_selectedPatMuonsLoose.innerTrack_hitPattern_numberOfValidPixelHits", Muon_innerTrack_hitPattern_numberOfValidPixelHits);
   stream.select("patMuon_selectedPatMuonsLoose.innerTrack_hitPattern_trackerLayersWithMeasurement", Muon_innerTrack_hitPattern_trackerLayersWithMeasurement);
   stream.select("patMuon_selectedPatMuonsLoose.isGlobalMuon", Muon_isGlobalMuon);
@@ -1582,6 +1600,7 @@ void selectVariables(itreestream& stream)
   stream.select("recoTrackHelper_generalTracksReduced.caloHadDeltaRp3", Track_caloHadDeltaRp3);
   stream.select("recoTrackHelper_generalTracksReduced.caloHadDeltaRp4", Track_caloHadDeltaRp4);
   stream.select("recoTrackHelper_generalTracksReduced.caloHadDeltaRp5", Track_caloHadDeltaRp5);
+  stream.select("recoTrackHelper_generalTracksReduced.charge", Track_charge);
   stream.select("recoTrackHelper_generalTracksReduced.chi2", Track_chi2);
   stream.select("recoTrackHelper_generalTracksReduced.eta", Track_eta);
   stream.select("recoTrackHelper_generalTracksReduced.hitPattern_trackerLayersWithoutMeasurement", Track_hitPattern_trackerLayersWithoutMeasurement);
