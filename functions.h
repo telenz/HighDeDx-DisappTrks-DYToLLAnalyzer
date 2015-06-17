@@ -260,7 +260,7 @@ bool leadingJetRequirementsFullfilled(struct evt::Jet_s* leadingJet, TH1D* count
 
   // jetId: https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID
   if(leadingJet==0)                                return false;
-  if(leadingJet->pt<=100.)                         return false;
+  if(leadingJet->pt<=110.)                         return false;
   countsEventCuts->Fill("leadingJetPtGt110GeV", evt::weight);
   if(std::abs(leadingJet->eta)>=2.4)               return false;
   countsEventCuts->Fill("absLeadJetEtaLt2p4", evt::weight);
@@ -768,10 +768,18 @@ std::vector<evt::ElectronPFlow_s>  getTightElectronsInEvent(){
 }
 
 //--------------------------------------------------------------------------------------------------
-TLorentzVector lorentzVector(float pt, float eta, float phi, float energy){
+TLorentzVector lorentzVectorE(float pt, float eta, float phi, float energy){
   
   TLorentzVector v4;
   v4.SetPtEtaPhiE(pt,eta,phi,energy);
+  
+  return v4;
+};
+
+TLorentzVector lorentzVectorM(float pt, float eta, float phi, float mass){
+  
+  TLorentzVector v4;
+  v4.SetPtEtaPhiM(pt,eta,phi,mass);
   
   return v4;
 };
