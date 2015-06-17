@@ -36,6 +36,9 @@ hist(histName, ofile_)
   
   tightMuonCut                 = false;
   tightElectronCut             = false;
+  TagAndProbeElectronCut       = false;
+  TagAndProbeMuonCut           = false;
+  TagAndProbeTauCut            = false;
   
   invertTrackPtRequirement         = false;
   invertCaloIsolationRequirement   = false;
@@ -146,36 +149,6 @@ int Event::Selection()
   countsEventCuts->Fill("1MetwithDeltaPhiMin2Jetsgt0p5", weight);
 
   //.................................................................................//
-  //%%%%%%%%% Tight Lepton Selection %%%%%%%%%%%%%
-  if(tightMuonCut){
-
-    MuonColl = getTightMuonsInEvent();
-    if(MuonColl.size() != 2)                    return 0;
-    if(MuonColl[0].charge == MuonColl[1].charge)                    return 0;
-    TLorentzVector muon1 = lorentzVector(MuonColl[0].pt, MuonColl[0].eta, MuonColl[0].phi, MuonColl[0].energy);
-    TLorentzVector muon2 = lorentzVector(MuonColl[1].pt, MuonColl[1].eta, MuonColl[1].phi, MuonColl[1].energy);
-    double invMassMuons = (muon1+muon2).M();
-    if(invMassMuons>100 || invMassMuons<80)  return 0;
-    countsEventCuts->Fill("TwoTightMuonsInEvent", weight);
-    matchMuonToGenParticle(MuonColl);
-    //cout<<"invariant mass from muons= "<<invMassMuons<<endl;
-
-  }
-  
-  if(tightElectronCut){
-
-    ElectronColl = getTightElectronsInEvent();
-    if(ElectronColl.size() != 2)                    return 0;
-    if(ElectronColl[0].charge == ElectronColl[1].charge)                    return 0;
-    TLorentzVector electron1 = lorentzVector(ElectronColl[0].pt, ElectronColl[0].eta, ElectronColl[0].phi, ElectronColl[0].energy);
-    TLorentzVector electron2 = lorentzVector(ElectronColl[1].pt, ElectronColl[1].eta, ElectronColl[1].phi, ElectronColl[1].energy);
-    double invMassElectrons = (electron1+electron2).M();
-    if(invMassElectrons>100 || invMassElectrons<80) return 0;
-    countsEventCuts->Fill("TwoTightElectronsInEvent", weight);
-    //cout<<"invariant mass from electrons= "<<invMassElectrons<<endl;
-
-  }
-  //.................................................................................//
   //%%%%%%%%% Track Preselection %%%%%%%%%%%%%
   if(trackPreselection){
     // 4.)
@@ -195,7 +168,110 @@ int Event::Selection()
     if(TrackColl.size()==0) return 0;
     countsEventCuts->Fill("trackParticleMatchingCut", weight);
   }
+  //.................................................................................//
+  //%%%%%%%%% Tight Lepton Selection %%%%%%%%%%%%%
+  if(tightMuonCut){
 
+    MuonColl = getTightMuonsInEvent();
+    if(MuonColl.size() != 2)                    return 0;
+    if(MuonColl[0].charge == MuonColl[1].charge)                    return 0;
+    TLorentzVector muon1 = lorentzVectorE(MuonColl[0].pt, MuonColl[0].eta, MuonColl[0].phi, MuonColl[0].energy);
+    TLorentzVector muon2 = lorentzVectorE(MuonColl[1].pt, MuonColl[1].eta, MuonColl[1].phi, MuonColl[1].energy);
+    double invMassMuons = (muon1+muon2).M();
+    if(invMassMuons>100 || invMassMuons<80)  return 0;
+    countsEventCuts->Fill("TwoTightMuonsInEvent", weight);
+    matchMuonToGenParticle(MuonColl);
+    //cout<<"invariant mass from muons= "<<invMassMuons<<endl;
+
+  }
+  
+  if(tightElectronCut){
+
+    ElectronColl = getTightElectronsInEvent();
+    if(ElectronColl.size() != 2)                    return 0;
+    if(ElectronColl[0].charge == ElectronColl[1].charge)                    return 0;
+    TLorentzVector electron1 = lorentzVectorE(ElectronColl[0].pt, ElectronColl[0].eta, ElectronColl[0].phi, ElectronColl[0].energy);
+    TLorentzVector electron2 = lorentzVectorE(ElectronColl[1].pt, ElectronColl[1].eta, ElectronColl[1].phi, ElectronColl[1].energy);
+    double invMassElectrons = (electron1+electron2).M();
+    if(invMassElectrons>100 || invMassElectrons<80) return 0;
+    countsEventCuts->Fill("TwoTightElectronsInEvent", weight);
+    //cout<<"invariant mass from electrons= "<<invMassElectrons<<endl;
+
+  }
+
+  if(TagAndProbeElectronCut){
+
+    ElectronColl = getTightElectronsInEvent();
+    if(ElectronColl.size() == 0)     return 0;
+
+    std::vector<Track_s> TrackCollAux = TrackColl;
+    TrackColl.clear();
+    for(unsigned int j=0; j<ElectronColl.size(); j++){
+      for(unsigned int i=0; i<TrackCollAux.size(); i++){
+
+	if(ElectronColl[j].charge == TrackCollAux[i].charge)             continue;
+	TLorentzVector electron = lorentzVectorM(ElectronColl[j].pt, ElectronColl[j].eta, ElectronColl[j].phi, 0.510998910 * pow(10,-3) );
+	TLorentzVector track    = lorentzVectorM(TrackCollAux[i].pt, TrackCollAux[i].eta, TrackCollAux[i].phi, 0.510998910 * pow(10,-3) );
+	double invMass          = (electron+track).M();
+	if(invMass>100 || invMass<80)       continue;
+	TrackColl.push_back(TrackCollAux[i]);
+      }
+    }
+
+    if(TrackColl.size() == 0)    return 0;
+    countsEventCuts->Fill("TagAndProbeConditionsFullFilled", weight);
+  }
+
+  if(TagAndProbeMuonCut){
+
+    MuonColl = getTightMuonsInEvent();
+    if(MuonColl.size() == 0)     return 0;
+
+    std::vector<Track_s> TrackCollAux = TrackColl;
+    TrackColl.clear();
+    for(unsigned int j=0; j<MuonColl.size(); j++){
+      for(unsigned int i=0; i<TrackCollAux.size(); i++){
+
+	if(MuonColl[j].charge == TrackCollAux[i].charge)             continue;
+	TLorentzVector muon     = lorentzVectorM(MuonColl[j].pt    , MuonColl[j].eta    , MuonColl[j].phi    ,  105.6583715 * pow(10,-3) );
+	TLorentzVector track    = lorentzVectorM(TrackCollAux[i].pt, TrackCollAux[i].eta, TrackCollAux[i].phi,  105.6583715 * pow(10,-3) );
+	double invMass          = (muon+track).M();
+	if(invMass>100 || invMass<80)       continue;
+	TrackColl.push_back(TrackCollAux[i]);
+      }
+    }
+
+    if(TrackColl.size() == 0)    return 0;
+    countsEventCuts->Fill("TagAndProbeConditionsFullFilled", weight);
+  }
+
+  if(TagAndProbeTauCut){
+
+    MuonColl = getTightMuonsInEvent();
+    if(MuonColl.size() == 0)     return 0;
+
+    std::vector<Track_s> TrackCollAux = TrackColl;
+    TrackColl.clear();
+    for(unsigned int j=0; j<MuonColl.size(); j++){
+
+      TLorentzVector muon     = lorentzVectorE(MuonColl[j].pt, MuonColl[j].eta, MuonColl[j].phi, MuonColl[j].energy);
+      TLorentzVector met      = lorentzVectorE(MET_pt, MET_eta, MET_phi, MET_energy);
+      double mt               = (muon+met).Mt();
+      if(mt>40)               continue;
+
+      for(unsigned int i=0; i<TrackCollAux.size(); i++){
+	
+	if(MuonColl[j].charge == TrackCollAux[i].charge)             continue;
+	TLorentzVector track    = lorentzVectorM(TrackCollAux[i].pt, TrackCollAux[i].eta, TrackCollAux[i].phi, 1776.82 * pow(10,-3) );
+	double invMass          = (muon+track).M();
+	if(invMass>75 || invMass<40)       continue;
+	TrackColl.push_back(TrackCollAux[i]);
+      }
+    }
+
+    if(TrackColl.size() == 0)    return 0;
+    countsEventCuts->Fill("TagAndProbeConditionsFullFilled", weight);
+  }
   //.................................................................................//
   //%%%%%%%%% Final track cuts  BEGIN %%%%%%%%%%%%%
   // Final Track Cuts
