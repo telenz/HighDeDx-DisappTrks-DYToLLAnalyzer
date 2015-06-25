@@ -409,8 +409,8 @@ int main(int argc, char** argv)
       //fullSelection.Selection();
       
       //chiTracksnoSelection.Selection();
-      //chiTracksnoSelectionTightMuons.Selection();
-      //chiTracksnoSelectionTightElectrons.Selection();
+      chiTracksnoSelectionTightMuons.Selection();
+      chiTracksnoSelectionTightElectrons.Selection();
       chiTrackspreselectionTightMuons.Selection();
       chiTrackspreselectionTightElectrons.Selection();
       chiTrackspreselectionTagAndProbeElectron.Selection();
