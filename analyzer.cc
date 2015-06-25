@@ -134,32 +134,33 @@ int main(int argc, char** argv)
   //-------------------------------------------------------------------------------------
   cout<<endl<<endl<<"------------ Is it signal : "<<isSignal<<" --------------"<<endl<<endl;
   cout<<endl<<endl<<"------------ Is it data   : "<<isData<<" --------------"<<endl<<endl;
-  class Event noSelection("noSelection",ofile);
-  class Event noSelectionTightMuons("noSelectionTightMuons",ofile);
-  noSelectionTightMuons.tightMuonCut                =true;
-  class Event noSelectionTightElectrons("noSelectionTightElectrons",ofile);
-  noSelectionTightElectrons.tightElectronCut            =true;
-  class Event triggerRequirements("triggerRequirements",ofile);
-  triggerRequirements.triggerRequirements = true;
-  class Event preselection("preselection",ofile);
-  preselection.triggerRequirements        = true;
-  preselection.trackPreselection          = true;
-  preselection.qcdSupression              = true;
-  class Event fullSelection("fullSelection",ofile);
-  fullSelection.triggerRequirements       = true;
-  fullSelection.trackPreselection         = true;
-  fullSelection.qcdSupression             = true;
-  fullSelection.trackCandidateCutFinal    = true;
-  fullSelection.TrackPtRequirement        = true;
-  fullSelection.NumOfLostOuterRequirement = true;
-  fullSelection.CaloIsolationRequirement  = true;
-  fullSelection.DeDxRequirement           = true;
+  //class Event noSelection("noSelection",ofile);
+  //class Event triggerRequirements("triggerRequirements",ofile);
+  //triggerRequirements.triggerRequirements = true;
+  //class Event preselection("preselection",ofile);
+  //preselection.triggerRequirements        = true;
+  //preselection.trackPreselection          = true;
+  //preselection.qcdSupression              = true;
+  //class Event fullSelection("fullSelection",ofile);
+  //fullSelection.triggerRequirements       = true;
+  //fullSelection.trackPreselection         = true;
+  //fullSelection.qcdSupression             = true;
+  //fullSelection.trackCandidateCutFinal    = true;
+  //fullSelection.TrackPtRequirement        = true;
+  //fullSelection.NumOfLostOuterRequirement = true;
+  //fullSelection.CaloIsolationRequirement  = true;
+  //fullSelection.DeDxRequirement           = true;
 
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Only Chi
-  class Event chiTracksnoSelection("chiTracksnoSelection",ofile);
-  if(isSignal) chiTracksnoSelection.onlyChi = true;
+  //class Event chiTracksnoSelection("chiTracksnoSelection",ofile);
+  //if(isSignal) chiTracksnoSelection.onlyChi = true;
 
+  //class Event noSelectionTightMuons("noSelectionTightMuons",ofile);
+  //noSelectionTightMuons.tightMuonCut                =true;
+  //class Event noSelectionTightElectrons("noSelectionTightElectrons",ofile);
+  //noSelectionTightElectrons.tightElectronCut            =true;
+  
   class Event chiTracksnoSelectionTightMuons("chiTracksnoSelectionTightMuons",ofile);
   if(isSignal) chiTracksnoSelectionTightMuons.onlyChi = true;
   chiTracksnoSelectionTightMuons.tightMuonCut         = true;
@@ -193,29 +194,29 @@ int main(int argc, char** argv)
   chiTrackspreselectionTagAndProbeTau.TagAndProbeTauCut       = true;
   chiTrackspreselectionTagAndProbeTau.trackPreselection       = true;
 
-  class Event chiTrackstriggerRequirements("chiTrackstriggerRequirements",ofile);
-  if(isSignal) chiTrackstriggerRequirements.onlyChi = true;
-  chiTrackstriggerRequirements.triggerRequirements  = true;
+  //class Event chiTrackstriggerRequirements("chiTrackstriggerRequirements",ofile);
+  //if(isSignal) chiTrackstriggerRequirements.onlyChi = true;
+  //chiTrackstriggerRequirements.triggerRequirements  = true;
 
-  class Event chiTrackspreselection("chiTrackspreselection",ofile);
-  if(isSignal) chiTrackspreselection.onlyChi= true;
-  chiTrackspreselection.triggerRequirements = true;
-  chiTrackspreselection.trackPreselection   = true;
-  chiTrackspreselection.qcdSupression       = true;
+  //class Event chiTrackspreselection("chiTrackspreselection",ofile);
+  //if(isSignal) chiTrackspreselection.onlyChi= true;
+  //chiTrackspreselection.triggerRequirements = true;
+  //chiTrackspreselection.trackPreselection   = true;
+  //chiTrackspreselection.qcdSupression       = true;
 
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // SM model control regions
-  class Event chiTracksSMControlCalo("chiTracksSMControlCalo",ofile);
-  if(isSignal) chiTracksSMControlCalo.onlyChi   = true;
-  chiTracksSMControlCalo.triggerRequirements    = true;
-  chiTracksSMControlCalo.trackPreselection      = true;
-  chiTracksSMControlCalo.qcdSupression          = true;
-  chiTracksSMControlCalo.trackCandidateCutFinal = true;
-  chiTracksSMControlCalo.TrackPtRequirement             = false;
-  chiTracksSMControlCalo.NumOfLostOuterRequirement      = false;
-  chiTracksSMControlCalo.CaloIsolationRequirement       = true;
-  chiTracksSMControlCalo.DeDxRequirement                = false;
-  chiTracksSMControlCalo.invertCaloIsolationRequirement = true;
+  //class Event chiTracksSMControlCalo("chiTracksSMControlCalo",ofile);
+  //if(isSignal) chiTracksSMControlCalo.onlyChi   = true;
+  //chiTracksSMControlCalo.triggerRequirements    = true;
+  //chiTracksSMControlCalo.trackPreselection      = true;
+  //chiTracksSMControlCalo.qcdSupression          = true;
+  //chiTracksSMControlCalo.trackCandidateCutFinal = true;
+  //chiTracksSMControlCalo.TrackPtRequirement             = false;
+  //chiTracksSMControlCalo.NumOfLostOuterRequirement      = false;
+  //chiTracksSMControlCalo.CaloIsolationRequirement       = true;
+  //chiTracksSMControlCalo.DeDxRequirement                = false;
+  //chiTracksSMControlCalo.invertCaloIsolationRequirement = true;
   
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -259,6 +260,7 @@ int main(int argc, char** argv)
   //-------------------------------------------------------------------------------------
   // Declare additional branch addresses for hit information
   //-------------------------------------------------------------------------------------
+  /*
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsDeDx",&HitsDeDx);
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsPathlength",&HitsPathlength);
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsShapetest",&HitsShapetest);
@@ -266,7 +268,7 @@ int main(int argc, char** argv)
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsEta",&HitsEta);
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsPhi",&HitsPhi);
   stream._chain->SetBranchAddress("recoTrackHelper_TrackRefitter_HitsTransverse",&HitsTransverse);
-    
+  */
   //-------------------------------------------------------------------------------------
   // Loop over events
   //-------------------------------------------------------------------------------------
