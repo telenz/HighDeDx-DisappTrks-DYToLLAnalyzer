@@ -272,6 +272,7 @@ class Event
   std::vector<Jet_s> JetColl;
   std::vector<Jet_s> subleadingJetColl;
   std::vector<MuonPFlow_s> MuonColl;
+  std::vector<MuonPFlow_s> StdMuonColl;
   std::vector<ElectronPFlow_s> ElectronColl;
     
   struct GenParticle_s leadJetGenParticle;
@@ -289,6 +290,7 @@ class Event
   bool TagAndProbeElectronCut;
   bool TagAndProbeMuonCut;
   bool TagAndProbeTauCut;
+  bool OneTightMuonCut;
 
   bool TrackPtRequirement;
   bool NumOfLostOuterRequirement;
