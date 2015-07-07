@@ -194,6 +194,11 @@ int main(int argc, char** argv)
   chiTrackspreselectionTagAndProbeTau.TagAndProbeTauCut       = true;
   chiTrackspreselectionTagAndProbeTau.trackPreselection       = true;
 
+  class Event ReconstructionEfficiencyTagAndProbe("ReconstructionEfficiencyTagAndProbe",ofile);
+  if(isSignal) ReconstructionEfficiencyTagAndProbe.onlyChi    = true;
+  ReconstructionEfficiencyTagAndProbe.OneTightMuonCut         = true;
+
+
   //class Event chiTrackstriggerRequirements("chiTrackstriggerRequirements",ofile);
   //if(isSignal) chiTrackstriggerRequirements.onlyChi = true;
   //chiTrackstriggerRequirements.triggerRequirements  = true;
@@ -418,6 +423,7 @@ int main(int argc, char** argv)
       chiTrackspreselectionTagAndProbeElectron.Selection();
       chiTrackspreselectionTagAndProbeMuon.Selection();
       chiTrackspreselectionTagAndProbeTau.Selection();
+      ReconstructionEfficiencyTagAndProbe.Selection();
       
       
     }//end of loop over events
