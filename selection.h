@@ -39,6 +39,7 @@ hist(histName, ofile_)
   TagAndProbeElectronCut       = false;
   TagAndProbeMuonCut           = false;
   TagAndProbeTauCut            = false;
+  OneTightMuonCut              = false;
   
   invertTrackPtRequirement         = false;
   invertCaloIsolationRequirement   = false;
@@ -54,6 +55,7 @@ int Event::Selection()
   TrackColl.clear();
   JetColl.clear();
   MuonColl.clear();
+  StdMuonColl.clear();
   ElectronColl.clear();
       
   TrackColl=evt::Track;
@@ -184,7 +186,7 @@ int Event::Selection()
     //cout<<"invariant mass from muons= "<<invMassMuons<<endl;
 
   }
-  
+  //.................................................................................//
   if(tightElectronCut){
 
     ElectronColl = getTightElectronsInEvent();
@@ -198,7 +200,34 @@ int Event::Selection()
     //cout<<"invariant mass from electrons= "<<invMassElectrons<<endl;
 
   }
+  //.................................................................................//
+  //%%%%%%%%% One Tight Muon + One standalone Muon %%%%%%%%%%%%%
+  if(OneTightMuonCut){
 
+    MuonColl = getTightMuonsInEvent();
+    if(MuonColl.size() == 0)                                            return 0;
+
+    
+
+    for(unsigned int i=0; i<evt::MuonPFlow.size(); i++){
+
+      if(!evt::MuonPFlow[i].isStandAloneMuon )                          continue;
+      if(evt::MuonPFlow[i].charge == MuonColl[0].charge)                continue;
+      TLorentzVector muon1 = lorentzVectorE(MuonColl[0].pt, MuonColl[0].eta, MuonColl[0].phi, MuonColl[0].energy);
+      TLorentzVector muon2 = lorentzVectorE(evt::MuonPFlow[i].pt, evt::MuonPFlow[i].eta, evt::MuonPFlow[i].phi, evt::MuonPFlow[i].energy);
+      double invMassMuons = (muon1+muon2).M();
+      if(invMassMuons>100 || invMassMuons<80)                           continue;
+      StdMuonColl.push_back(evt::MuonPFlow[i]);
+    }
+
+    if(StdMuonColl.size() == 0)                                            return 0;
+    if(StdMuonColl.size()>1) cout<<"size of std Coll = "<<StdMuonColl.size()<<endl;
+
+    MuonColl.clear();
+    MuonColl = StdMuonColl;
+
+  }
+  //.................................................................................//
   if(TagAndProbeElectronCut){
 
     ElectronColl = getTightElectronsInEvent();
