@@ -290,6 +290,7 @@ int main(int argc, char** argv)
  
   //TH1F *PUweights = (TH1F*)file_PU.Get("ratio");
   TH1F *PUweights = (TH1F*)file_PUdata.Get("analyzeHiMassTau/NVertices_0");
+  PUweights->SetDirectory(0);
   PUweights->Scale(1/PUweights->Integral());
   //cout<<"PUweights = "<<PUweights->Integral()<<endl;
   //  TH1F *PUmc = (TH1F*)file_PUmc.Get("analyzeHiMassTau/NVertices_0");
@@ -299,7 +300,8 @@ int main(int argc, char** argv)
   
   PUweights->Divide(PUmc);
   //cout<<"PUweights = "<<PUweights->Integral()<<endl;
- 
+  file_PUdata.Close();
+  file_PUmc.Close();
   weight = 1.;
   // -----------------------------------------------------------------------------------------------------------------------
   // ***********************************************************************************************************************
