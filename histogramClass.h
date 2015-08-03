@@ -38,6 +38,7 @@ Hist::Hist(TString histName, outputFile ofile_)
   tree->Branch("trackGenE",&variables.trackGenE);
   tree->Branch("trackGenEt",&variables.trackGenEt);
   tree->Branch("trackEta",&variables.trackEta);
+  tree->Branch("trackPhi",&variables.trackPhi);
   tree->Branch("trackNLostOuter",&variables.trackNLostOuter);
   tree->Branch("trackNLostInner",&variables.trackNLostInner);
   tree->Branch("trackNLostMiddle",&variables.trackNLostMiddle);
@@ -311,6 +312,7 @@ void Hist::FillTrackVariables(std::vector<evt::Track_s> trkCollection,double wei
     variables.trackGenE.push_back(trkCollection[i].genE);
     variables.trackGenEt.push_back(trkCollection[i].genEt);
     variables.trackEta.push_back(trkCollection[i].eta);
+    variables.trackPhi.push_back(trkCollection[i].phi);
     variables.trackNLostOuter.push_back(trkCollection[i].trackerExpectedHitsOuter_numberOfHits);
     variables.trackNLostInner.push_back(trkCollection[i].trackerExpectedHitsInner_numberOfLostHits);
     variables.trackNLostMiddle.push_back(trkCollection[i].hitPattern_trackerLayersWithoutMeasurement);
