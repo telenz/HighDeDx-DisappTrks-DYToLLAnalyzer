@@ -21,6 +21,7 @@ typedef struct {
   std::vector<Double_t>  trackGenE;
   std::vector<Double_t>  trackGenEt;
   std::vector<Double_t>  trackEta;
+  std::vector<Double_t>  trackPhi;
   std::vector<Int_t>     trackNLostOuter;
   std::vector<Int_t>     trackNLostInner;
   std::vector<Int_t>     trackNLostMiddle;
@@ -88,6 +89,7 @@ typedef struct {
     trackGenE.clear();
     trackGenEt.clear();
     trackEta.clear();
+    trackPhi.clear();
     trackNLostOuter.clear();
     trackNLostInner.clear();
     trackNLostMiddle.clear();
