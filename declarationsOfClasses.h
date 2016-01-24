@@ -230,6 +230,12 @@ class Hist
   TH1D *hMET120_HBHENoiseCleaned_prescale ;
   TH1D *hLuminosityBlock;
   TH1D* hMet;
+  TH1D* hMinvMuons;
+  TH1D* hMinvElectrons;
+  TH1D* hMinvMuonCandTrk;
+  TH1D* hMinvElectronCandTrk;
+  TH1D* hMinvMuonFromTauCandTrk;
+  TH1D* hMTransverseMuonFromTauMET;
   TH1D *hnPFJetsub;
 
   TH1D *hDeltaPhi;
