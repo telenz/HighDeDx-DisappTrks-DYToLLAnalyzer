@@ -187,6 +187,13 @@ Hist::Hist(TString histName, outputFile ofile_)
   hMET120_HBHENoiseCleaned_prescale          = iniTH1D("hMET120_HBHENoiseCleaned_prescale",101,-1,100);
   hLuminosityBlock                           = iniTH1D("hLuminosityBlock",2500,0,2500);
   hMet                          = iniTH1D("hMet",150,0,1500);
+  hMinvMuons                    = iniTH1D("hMinvMuons",60,60,120);
+  hMinvElectrons                = iniTH1D("hMinvElectrons",60,60,120);
+  hMinvMuonCandTrk              = iniTH1D("hMinvMuonCandTrk",60,60,120);
+  hMinvElectronCandTrk          = iniTH1D("hMinvElectronCandTrk",60,60,120);
+  hMinvMuonFromTauCandTrk       = iniTH1D("hMinvMuonFromTauCandTrk",30,0,120);
+  hMTransverseMuonFromTauMET    = iniTH1D("hMTransverseMuonFromTauMET",12,0,120);
+
 
   hgenPtChi              = iniTH1D("hgenPtChi",150,0,1500);
   hgenPChi               = iniTH1D("hgenPChi",300,0,3000);
