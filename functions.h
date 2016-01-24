@@ -380,15 +380,15 @@ std::vector<evt::Track_s> trackCandidateCuts(std::vector<evt::Track_s> trackColl
       firstTrack1 = false;
     }
     //.................................................................................//
-    if(trackCollection[i].pt<=10.)                                            continue;
+    if(trackCollection[i].pt<=20.)                                            continue;
     if(firstTrack2){
-      countsTrackCriteria->Fill("PtGreater10GeV", weight);  
+      countsTrackCriteria->Fill("PtGreater20GeV", weight);  
       firstTrack2 = false;
     }
     //.................................................................................//
-    if(std::abs(trackCollection[i].eta)>2.4)                                  continue;
+    if(std::abs(trackCollection[i].eta)>2.1)                                  continue;
     if(firstTrack3){
-      countsTrackCriteria->Fill("EtaLess2p4", weight);
+      countsTrackCriteria->Fill("EtaLess2p1", weight);
       firstTrack3 = false;
     }
     //.................................................................................//
@@ -427,7 +427,7 @@ std::vector<evt::Track_s> trackCleaningCuts(std::vector<evt::Track_s> trackColle
   for(unsigned int i=0; i<trackCollection.size(); i++){
 
     //.................................................................................//
-    //if(std::abs(trackCollection[i].eta)>1.42 && std::abs(trackCollection[i].eta)<1.65)        continue;
+    if(std::abs(trackCollection[i].eta)>1.42 && std::abs(trackCollection[i].eta)<1.65)        continue;
     if(firstTrack1){
       countsTrackCriteria->Fill("EtaLess1p42Gt1p65", weight);
       firstTrack1 = false;
@@ -480,9 +480,9 @@ std::vector<evt::Track_s> trackCleaningCuts(std::vector<evt::Track_s> trackColle
       firstTrack7 = false;
     }
     //.................................................................................//
-    //if(trackCollection[i].numberOfValidHits<7)                                                continue;
+    //if(trackCollection[i].numberOfValidHits<6)                                                continue;
     if(firstTrack8){
-      countsTrackCriteria->Fill("NOfValidHitsGreater7", weight);
+      countsTrackCriteria->Fill("NOfValidHitsGreater5", weight);
       firstTrack8 = false;
     }
     //.................................................................................//
