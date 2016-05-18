@@ -5,3 +5,4 @@
 analyzer
 filelist_*.txt
 *~
+analyzer_histograms.root
